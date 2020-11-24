@@ -90,7 +90,7 @@ packages can be tracked.
 
 ```
 ## [1] "C:/Users/carlo/Documents/Messing with R/Cereal/renv/library/R-4.0/x86_64-w64-mingw32"
-## [2] "C:/Users/carlo/AppData/Local/Temp/RtmpaGOQEq/renv-system-library"
+## [2] "C:/Users/carlo/AppData/Local/Temp/RtmpaudAot/renv-system-library"
 ```
 
 <img src = "Instruction_Screenshots/Renv_self_commits_relevant_files.png" 
@@ -236,8 +236,7 @@ Because now YOU can run this code too.
 1. Go to [my Cereal repo github](https://github.com/CR-Mercado/Cereal) and 
 download the zip folder. 
 
-<img src = "Instruction_Screenshots/Github_Download_Repo_Reproduce.png" 
-width = "800">
+<img src = "Instruction_Screenshots/Github_Download_Repo_Reproduce.png" width = "800">
 
 2. Extract it somewhere (pretty much anywhere!); here I extract it to a 
 totally different folder in my directory. 
