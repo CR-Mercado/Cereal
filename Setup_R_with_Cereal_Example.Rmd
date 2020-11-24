@@ -127,8 +127,6 @@ manufacturer names (instead of just the first letter).
 
 ```{r}
 library(ggplot2)
-library(DT) # aesthetic tables 
-
 # Load and Clean Up 
 cereal <- read.csv("Data/cereal.csv", stringsAsFactors = TRUE)
 
@@ -148,9 +146,7 @@ full_name_merge_tbl <- data.frame(
 
 cereal <- merge( x = cereal, y = full_name_merge_tbl)
 
-DT::datatable(cereal, extensions = 'Buttons',
-            options = list(dom = 'Blfrtip',
-                           buttons = c('copy', 'csv')))
+knitr::kable(head(cereal))
 
 ```
 
@@ -215,7 +211,7 @@ gg
 
 ## 5) Reproducibility 
 
-Ok, so why did I do all that work if I'm just using ggplot2 and Data Table and
+Ok, so why did I do all that work if I'm just using ggplot2 and
 RMarkdown?
 
 Because now YOU can run this code too. 
