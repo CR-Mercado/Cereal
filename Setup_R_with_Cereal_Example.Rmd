@@ -5,6 +5,8 @@ date: "November 24, 2020"
 output:
   html_document:
     keep_md: yes
+    toc: true
+    toc_depth: 3
 ---
 
 ```{r setup, include=FALSE}
@@ -21,7 +23,7 @@ Unfortunately, this isn't always amenable to good science that is reproducible.
 So this document shows a quick R Setup using R Projects, Github for Desktop,
 and the renv package to have a true first step for reproducible analysis. 
 
-### 1) Programs 
+## 1) Programs 
 
 I recommend the following programs: 
 
@@ -29,7 +31,7 @@ I recommend the following programs:
 - [R (I use 4.0.3)](https://cran.r-project.org/bin/windows/base/)
 - [RStudio](https://rstudio.com/products/rstudio/download/)
 
-### 2) File Folders 
+## 2) File Folders 
 
 It's best to be on a mapped drive; it makes R behave a lot better. If you're 
 in a network drive (like I am when I use my client laptop as a consultant)
@@ -52,7 +54,7 @@ repo folder made by Github in step 1.
 <img src="Instruction_Screenshots/Associate_RProj_with_Git_Repo.png" 
 width = "600">
 
-### 3) Package Management 
+## 3) Package Management 
 
 Different versions of packages have different functions and given the 
 interdependency of packages that build on each other, it is critical
@@ -100,13 +102,13 @@ these packages are the packages for creating R Markdown documents like this one!
 <img src = "Instruction_Screenshots/Renv_snapshot_updates_lockfile.png" 
 width = "400">
 
-### 4) Example Analysis 
+## 4) Example Analysis 
 
 Now, with my packages being tracked, my R Project ensuring portability across
 other peoples computers, and Github serving as version control of my code, I'm
 ready to do an analysis and show how renv ensures it is reproducible! 
 
-#### Background Note 
+### Background Note 
 
 Selecting the [Cereal dataset](https://www.kaggle.com/crawford/80-cereals)
 from the fun [beginner friendly datasets](https://www.kaggle.com/rtatman/fun-beginner-friendly-datasets) Kaggle page, I'll do a quick pair-plots exploration and then a more purposeful
@@ -118,7 +120,7 @@ on why this is an *analytics* example and not a *statistics* or *machine learnin
 [We have what we have and it says what it says.](https://www.kdnuggets.com/2019/09/difference-analytics-statistics.html)
 
 
-#### Read Data
+### Read Data
 
 Read in the Cereal dataset in my Data folder. Merge in the full 
 manufacturer names (instead of just the first letter). 
@@ -152,7 +154,7 @@ DT::datatable(cereal, extensions = 'Buttons',
 
 ```
 
-#### Investigate Pairs Plot
+### Investigate Pairs Plot
 
 A pairs plot shows the intersection of all variables as (small and 
 often difficult to read) scatterplots. This is useful for identifying quick
@@ -186,7 +188,7 @@ The slope is negative, which frankly, I didn't expect; In my mind a little
 bit of sugar is good up to a point and then it gets to be too much later. The
 critics disagree, they seems to dislike sugar all-around. 
 
-#### The Critics Hate Sugar
+### The Critics Hate Sugar
 
 This plot shows the relationship of interest in more detail. The negative
 correlation between sugar in cereal and the cereal's rating across the 7
@@ -211,7 +213,7 @@ gg
 
 ```
 
-### Reproducibility 
+## 5) Reproducibility 
 
 Ok, so why did I do all that work if I'm just using ggplot2 and Data Table and
 RMarkdown?
@@ -252,9 +254,14 @@ renv::restore()
 <img src = "Instruction_Screenshots/reproduced_restore_packages.png"
 width = "600">
 
+5. And Voila, you can run this markdown file repeating the analysis with the
+**exact** same package versions; the only thing left would be to get out 
+of the operating system concerns using the virtualization items I mentioned above.
 
+Thank you for reading! 
 
-
+You can [follow me on LinkedIn](http://linkedin.com/in/crmercado) for more
+data science, economics, R, GIS, and related notes. 
 
 
 
