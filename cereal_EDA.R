@@ -42,7 +42,7 @@ lapply(cereal, function(x){
   length(unique(x))
 })
 
-pdf(file = "pairs_plot_cereal.pdf")
+png(file = "pairs_plot_cereal.png")
 pairs(cereal[, - which(colnames(cereal) %in% c("name","MFR_Name"))])
 dev.off()
 
@@ -54,13 +54,15 @@ gg <- ggplot(cereal, aes(x = sugars, y = rating)) +
               linetype = "dashed", color = "black") +
   labs(x = "Sugar (grams) per serving", 
        y = "Consumer Report Ratings", 
-       title="Critics Rail Against Big Sugar",
+       title="Cereal Critics Rail Against Big Sugar",
        subtitle = "A gram of sugar costs you nearly 2.5 points!",
        caption = "Source: kaggle.com/crawford/80-cereals") + theme_classic() + 
-  theme(axis.title = element_text(size = rel(2)))
-gg$labels$colour <- "Manufacturer"
+  theme(axis.title = element_text(size = rel(1.25)), 
+        plot.title = element_text(size = rel(1.3), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.3), hjust = 0.5))
+gg$labels$colour <- "Cereal Manufacturer"
 
-pdf(file = "Critics_Against_Sugar.pdf")
+png(file = "Critics_Against_Sugar.png")
 gg
 dev.off()
 
