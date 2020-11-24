@@ -90,7 +90,7 @@ packages can be tracked.
 
 ```
 ## [1] "C:/Users/carlo/Documents/Messing with R/Cereal/renv/library/R-4.0/x86_64-w64-mingw32"
-## [2] "C:/Users/carlo/AppData/Local/Temp/Rtmp4uVlAj/renv-system-library"
+## [2] "C:/Users/carlo/AppData/Local/Temp/RtmpOUwL1h/renv-system-library"
 ```
 
 <img src = "Instruction_Screenshots/Renv_self_commits_relevant_files.png" 
@@ -218,7 +218,9 @@ gg <- ggplot(cereal, aes(x = sugars, y = rating)) +
        caption = "Source: kaggle.com/crawford/80-cereals") + theme_classic() + 
   theme(axis.title = element_text(size = rel(1.25)), 
         plot.title = element_text(size = rel(1.3), hjust = 0.5),
-        plot.subtitle = element_text(size = rel(1.3), hjust = 0.5))
+        plot.subtitle = element_text(size = rel(1.3), hjust = 0.5)) + 
+  scale_y_continuous(limits = c(0,100), breaks = c(0,20,40,60,80,100))
+
 gg$labels$colour <- "Cereal Manufacturer"
 
 gg
