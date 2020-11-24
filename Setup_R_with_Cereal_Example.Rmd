@@ -97,3 +97,117 @@ these packages are the packages for creating R Markdown documents like this one!
 
 <img src = "Instruction_Screenshots/Renv_snapshot_updates_lockfile.png" width = "400">
 
+### 4) Example Analysis 
+
+Now, with my packages being tracked, my R Project ensuring portability across
+other peoples computers, and Github serving as version control of my code, I'm
+ready to do an analysis and show how renv ensures it is reproducible! 
+
+#### Background Note 
+
+Selecting the [Cereal dataset](https://www.kaggle.com/crawford/80-cereals)
+from the fun [beginner friendly datasets](https://www.kaggle.com/rtatman/fun-beginner-friendly-datasets) Kaggle page, I'll do a quick pair-plots exploration and then a more purposeful
+visualization showing a relationship I found.
+
+I may owe it to the reader to quickly link to some statistical philosophy sources
+on why this is an *analytics* example and not a *statistics* or *machine learning* one. Most specifically, there isn't any decision to make under uncertainty. 
+
+[We have what we have and it says what it says.](https://www.kdnuggets.com/2019/09/difference-analytics-statistics.html)
+
+
+#### Read Data
+
+Read in the Cereal dataset in my Data folder. Merge in the full 
+manufacturer names (instead of just the first letter). 
+
+```{r}
+library(ggplot2)
+library(DT) # aesthetic tables 
+
+# Load and Clean Up 
+cereal <- read.csv("Data/cereal.csv", stringsAsFactors = TRUE)
+
+# Manufacturer Names
+
+full_name_merge_tbl <- data.frame(
+  mfr = c("A","G","K","N","P","Q","R"),
+  MFR_Name = c(
+    "American Home",
+    "General Mills",
+    "Kelloggs",
+    "Nabisco",
+    "Post",
+    "Quaker Oats",
+    "Ralston Purina")
+)
+
+cereal <- merge( x = cereal, y = full_name_merge_tbl)
+
+DT::datatable(cereal, extensions = 'Buttons',
+            options = list(dom = 'Blfrtip',
+                           buttons = c('copy', 'csv')))
+
+```
+
+#### Investigate Pairs Plot
+
+A pairs plot shows the intersection of all variables as (small and 
+often difficult to read) scatterplots. This is useful for identifying quick
+relationships of interest, for example, the relationship between the grams
+of sugar per serving and the consumer report rating. 
+
+Instead of plotting directly, here is the code for saving it as a PNG and a PDF. 
+I personally like saving plots as PDFs because it is cleaner to zoom in and 
+extract sections. 
+
+```{r, eval = FALSE }
+
+# Remove cereal label column "name" and duplicative column "MFR_Name"
+png(file = "pairs_plot_cereal.png")
+pairs(cereal[, - which(colnames(cereal) %in% c("name","MFR_Name"))])
+dev.off()
+
+pdf(file = "pairs_plot_cereal.pdf")
+pairs(cereal[, - which(colnames(cereal) %in% c("name","MFR_Name"))])
+dev.off()
+
+```
+
+Here is the intersection of interest zoomed in. Like a correlation plot, the 
+diagonal is shown as the reference and each relationship is duplicated (you
+can either look at the bottom triangle or the top triangle of a pairs plot). 
+
+<img src = "sugar_rating_identified_on_pairs_plot.png" width = "600">
+
+The slope is negative, which frankly, I didn't expect; In my mind a little
+bit of sugar is good up to a point and then it gets to be too much later. The
+critics disagree, they seems to dislike sugar all-around. 
+
+#### The Critics Hate Sugar
+
+This plot shows the relationship of interest in more detail. The negative
+correlation between sugar in cereal and the cereal's rating across the 7
+manufacturers. 
+
+```{r, message = FALSE, warning= FALSE}
+gg <- ggplot(cereal, aes(x = sugars, y = rating)) + 
+  geom_point(aes(col = MFR_Name)) +
+  geom_smooth(method = "lm", se = FALSE,
+              linetype = "dashed", color = "black") +
+  labs(x = "Sugar (grams) per serving", 
+       y = "Consumer Report Ratings", 
+       title="Cereal Critics Rail Against Big Sugar",
+       subtitle = "A gram of sugar costs you nearly 2.5 points!",
+       caption = "Source: kaggle.com/crawford/80-cereals") + theme_classic() + 
+  theme(axis.title = element_text(size = rel(1.25)), 
+        plot.title = element_text(size = rel(1.3), hjust = 0.5),
+        plot.subtitle = element_text(size = rel(1.3), hjust = 0.5))
+gg$labels$colour <- "Cereal Manufacturer"
+
+gg
+
+```
+
+### Reproducibility 
+
+
