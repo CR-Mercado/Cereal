@@ -41,7 +41,7 @@ Then you'll want to do the following:
 
 1. Create a new repo with Github for Desktop
 
-<img src="Instruction_Screenshots/Github_Repo.png" width="400">
+<img src="Instruction_Screenshots/Github_Repo.PNG" width="400">
 
 Notice I selected the R gitignore, this makes my repo a lot cleaner by
 not tracking temporary files (e.g. don't version control where my mouse
@@ -90,7 +90,7 @@ packages can be tracked.
 
 ```
 ## [1] "C:/Users/carlo/Documents/Messing with R/Cereal/renv/library/R-4.0/x86_64-w64-mingw32"
-## [2] "C:/Users/carlo/AppData/Local/Temp/RtmpaudAot/renv-system-library"
+## [2] "C:/Users/carlo/AppData/Local/Temp/Rtmp4uVlAj/renv-system-library"
 ```
 
 <img src = "Instruction_Screenshots/Renv_self_commits_relevant_files.png" 
