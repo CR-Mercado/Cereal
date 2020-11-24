@@ -49,7 +49,8 @@ last was when I closed my R Project).
 
 2. Create a new R project as an existing directory and select the 
 repo folder made by Github in step 1. 
-<img src="Instruction_Screenshots/Associate_RProj_with_Git_Repo.png" width = "600">
+<img src="Instruction_Screenshots/Associate_RProj_with_Git_Repo.png" 
+width = "600">
 
 ### 3) Package Management 
 
@@ -77,7 +78,7 @@ library(renv)
 renv::activate()
 ```
 
-This will change your library paths to an new library and also update 
+This will change your library paths to a new library and also update 
 your git repo to strategically ignore and commit files that ensure 
 packages can be tracked. 
 
@@ -85,7 +86,8 @@ packages can be tracked.
 .libPaths()
 ```
 
-<img src = "Instruction_Screenshots/Renv_self_commits_relevant_files.png" width = "400">
+<img src = "Instruction_Screenshots/Renv_self_commits_relevant_files.png" 
+width = "400">
 
 
 2. Now, when you install packages relevant to your analysis, renv will
@@ -95,7 +97,8 @@ Here I **snapshot** my current packages in use and renv identifies that
 I have a bunch of packages not yet in my lock file (you may notice
 these packages are the packages for creating R Markdown documents like this one!)
 
-<img src = "Instruction_Screenshots/Renv_snapshot_updates_lockfile.png" width = "400">
+<img src = "Instruction_Screenshots/Renv_snapshot_updates_lockfile.png" 
+width = "400">
 
 ### 4) Example Analysis 
 
@@ -209,5 +212,49 @@ gg
 ```
 
 ### Reproducibility 
+
+Ok, so why did I do all that work if I'm just using ggplot2 and Data Table and
+RMarkdown?
+
+Because now YOU can run this code too. 
+
+1. Go to [my Cereal repo github](https://github.com/CR-Mercado/Cereal) and 
+download the zip folder. 
+
+<img src = "Instruction_Screenshots/Github_Download_Repo_Reproduce.png" 
+width = "800">
+
+2. Extract it somewhere (pretty much anywhere!); here I extract it to a 
+totally different folder in my directory. 
+<img src = "Instruction_Screenshots/entire_repo_saved_somewhere_new.png" 
+width = 600> 
+
+Notice the Renv folder
+doesn't have the custom libraries (we'll restore those to prove reproducibility).
+
+<img src = "Instruction_Screenshots/renv_without_custom_libraries.png"
+width = 600> 
+
+3. Open the R Project (notice it's portable and has the updated 
+working directory). 
+
+<img 
+src = "Instruction_Screenshots/reproduced_R_Project_Cereal.png"
+width = "600"> 
+
+4. Then Restore the R Project 
+
+```{r, eval = FALSE}
+ # Run this in your copy of the R Project. 
+renv::restore() 
+```
+
+<img src = "Instruction_Screenshots/reproduced_restore_packages.png"
+width = "600">
+
+
+
+
+
 
 
