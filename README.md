@@ -1,6 +1,6 @@
 
 # Cereal
- Light EDA for Cereal Data
+ Fully reproducible EDA example template using RENV. 
 
 Well, Originally this was just a light EDA on some Cereal data for fun, but then it became a lesson in reproducible programming in R with Github, RStudio/R Projects, and the Renv package. [Read here for the full write-up!](https://github.com/CR-Mercado/Cereal/blob/main/Setup_R_with_Cereal_Example.md)
 
